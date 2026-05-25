@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIZZA MI | Depuis 2006 à Bourg-Saint-Andéol</title>
+    <style>
+        /* --- Styles de base --- */
+        :root {
+            --vert-pizza: #6cbd45;
+            --rouge-pizza: #e3000f;
+            --texte-fonce: #333333;
+            --fond-clair: #f9f9f9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--texte-fonce);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .bouton {
+            display: inline-block;
+            background-color: var(--vert-pizza);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .bouton:hover {
+            background-color: #559b34;
+        }
+
+        .bouton-rouge {
+            background-color: var(--rouge-pizza);
+        }
+
+        .bouton-rouge:hover {
+            background-color: #b3000b;
+        }
+
+        /* --- En-tête (Header) --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--rouge-pizza);
+        }
+
+        .logo span {
+            color: var(--vert-pizza);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: var(--vert-pizza);
+        }
+
+        /* --- Section Héro --- */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 150px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+        }
+
+        /* --- Nos 3 Services --- */
+        .services {
+            padding: 80px 5%;
+            background-color: var(--fond-clair);
+            text-align: center;
+        }
+
+        .services h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        .grille-services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .carte-service {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--vert-pizza);
+        }
+
+        .carte-service h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--rouge-pizza);
+        }
+
+        .carte-service.distributeur {
+            border-top: 5px solid var(--rouge-pizza);
+        }
+
+        .promo {
+            display: inline-block;
+            background-color: var(--rouge-pizza);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        /* --- Avis Google --- */
+        .avis {
+            padding: 80px 5%;
+            text-align: center;
+            background-color: var(--vert-pizza);
+            color: white;
+        }
+
+        .avis h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* --- Pied de page (Footer) --- */
+        footer {
+            background-color: #222;
+            color: white;
+            padding: 50px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        footer h4 {
+            margin-bottom: 20px;
+            color: var(--vert-pizza);
+        }
+
+        .footer-bas {
+            text-align: center;
+            background-color: #111;
+            color: #777;
+            padding: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">PIZZA <span>MI</span></div>
+        <nav>
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="carte.html">Notre carte</a></li>
+                <li><a href="emplacement.html">Notre emplacement</a></li>
+                <li><a href="privatisation.html">Privatisation</a></li>
+            </ul>
+        </nav>
+        <a href="tel:+33619655999" class="bouton bouton-rouge">📞 06 19 65 59 99</a>
+    </header>
+
+    <section class="hero">
+        <h1>L'authentique pizza généreuse</h1>
+        <p>Créé en 2006 par un pizzaïolo passionné. Un concept axé sur la famille : une qualité irréprochable, une quantité généreuse et le prix le plus juste.</p>
+        <a href="carte.html" class="bouton">Découvrir notre carte</a>
+    </section>
+
+    <section class="services">
+        <h2>Nos 3 Services</h2>
+        <div class="grille-services">
+            
+            <div class="carte-service">
+                <h3>🚚 Notre Camion</h3>
+                <p><strong>Parking de Neptune</strong><br>07700 Bourg-Saint-Andéol</p>
+                <br>
+                <p>Ouvert du mardi au samedi soir dès 18h00.</p>
+                <br>
+                <a href="emplacement.html" class="bouton">Voir le plan</a>
+            </div>
+
+            <div class="carte-service">
+                <h3>🎉 Évènementiel</h3>
+                <p>Vous organisez un évènement ? Mariage, baptême, anniversaire, évènement sportif ou repas d'entreprise...</p>
+                <br>
+                <p>Privatisez notre camion !</p>
+                <br>
+                <a href="privatisation.html" class="bouton">Se renseigner</a>
+            </div>
+
+            <div class="carte-service distributeur">
+                <h3>🍕 Distributeur 24/24</h3>
+                <p><strong>Gang of Pizza</strong><br>Z.A Les Auches (en face de Chausson)<br>07700 Bourg-Saint-Andéol</p>
+                <br>
+                <p>Venez découvrir de nouvelles recettes à toute heure du jour et de la nuit.</p>
+                <div class="promo">-10% avec le code : 311226</div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="avis">
+        <h2>Recommandé 2025</h2>
+        <p>Votre satisfaction est notre priorité depuis près de 20 ans. Partagez votre expérience !</p>
+        <br>
+        <a href="#" class="bouton bouton-rouge">Laisser un avis Google</a>
+    </section>
+
+    <footer>
+        <div>
+            <h4>PIZZA MI</h4>
+            <p>Camion de pizzas artisanales depuis 2006.</p>
+        </div>
+        <div>
+            <h4>Contact</h4>
+            <p>📞 06 19 65 59 99</p>
+            <p>📍 Parking de Neptune<br>07700 Bourg-Saint-Andéol</p>
+        </div>
+        <div>
+            <h4>Société</h4>
+            <p>SASU PIZZA MI</p>
+            <p>46 Chemin Farigoule</p>
+            <p>07700 Bourg-Saint-Andéol</p>
+        </div>
+    </footer>
+    <div class="footer-bas">
+        <p>© 2026 PIZZA MI - Tous droits réservés | Mentions légales et politique de confidentialité</p>
+    </div>
+
+</body>
+</html>
