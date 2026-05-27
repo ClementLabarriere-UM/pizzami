@@ -7,9 +7,9 @@
     <style>
         /* --- Styles de base --- */
         :root {
-            --vert-pizza: #6cbd45;
-            --rouge-pizza: #e3000f;
-            --texte-fonce: #333333;
+            --couleur-sombre: #373C36;
+            --couleur-accent: #61C629;
+            --texte-blanc: #ffffff;
             --fond-clair: #f9f9f9;
         }
 
@@ -21,7 +21,7 @@
         }
 
         body {
-            color: var(--texte-fonce);
+            color: var(--couleur-sombre);
             line-height: 1.6;
         }
 
@@ -30,26 +30,28 @@
             color: inherit;
         }
 
+        /* --- Boutons --- */
         .bouton {
             display: inline-block;
-            background-color: var(--vert-pizza);
-            color: white;
+            background-color: var(--couleur-accent);
+            color: var(--texte-blanc);
             padding: 12px 24px;
             border-radius: 30px;
             font-weight: bold;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.2s;
         }
 
         .bouton:hover {
-            background-color: #559b34;
+            background-color: #4da31e;
+            transform: translateY(-2px);
         }
 
-        .bouton-rouge {
-            background-color: var(--rouge-pizza);
+        .bouton-contact {
+            background-color: var(--couleur-sombre);
         }
 
-        .bouton-rouge:hover {
-            background-color: #b3000b;
+        .bouton-contact:hover {
+            background-color: #222522;
         }
 
         /* --- En-tête (Header) --- */
@@ -59,20 +61,22 @@
             align-items: center;
             padding: 20px 5%;
             background-color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
+        /* Adaptation pour le logo en image */
         .logo {
-            font-size: 24px;
-            font-weight: 900;
-            color: var(--rouge-pizza);
+            display: flex;
+            align-items: center;
         }
 
-        .logo span {
-            color: var(--vert-pizza);
+        .logo img {
+            max-height: 60px; /* Modifiez cette valeur selon la taille souhaitée */
+            width: auto;
+            display: block;
         }
 
         nav ul {
@@ -83,13 +87,14 @@
         }
 
         nav a:hover {
-            color: var(--vert-pizza);
+            color: var(--couleur-accent);
         }
 
         /* --- Section Héro --- */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
-            color: white;
+            /* Utilisation de cedric.png avec un léger voile sombre pour que le texte blanc reste lisible */
+            background: linear-gradient(rgba(55, 60, 54, 0.7), rgba(55, 60, 54, 0.7)), url('cedric.png') center/cover no-repeat;
+            color: var(--texte-blanc);
             text-align: center;
             padding: 150px 20px;
         }
@@ -97,24 +102,26 @@
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 20px;
+            text-transform: uppercase;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             max-width: 800px;
-            margin: 0 auto 30px auto;
+            margin: 0 auto 40px auto;
         }
 
         /* --- Nos 3 Services --- */
         .services {
-            padding: 80px 5%;
-            background-color: var(--fond-clair);
+            padding: 100px 5%;
+            background-color: var(--texte-blanc);
             text-align: center;
         }
 
         .services h2 {
-            font-size: 2.5rem;
-            margin-bottom: 50px;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: var(--couleur-sombre);
         }
 
         .grille-services {
@@ -124,67 +131,95 @@
         }
 
         .carte-service {
-            background: white;
-            padding: 40px 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-top: 5px solid var(--vert-pizza);
+            background: var(--fond-clair);
+            padding: 50px 30px;
+            border-radius: 15px;
+            transition: box-shadow 0.3s;
+            border-bottom: 4px solid #eee;
+        }
+
+        .carte-service:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         .carte-service h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--rouge-pizza);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--couleur-accent);
+            text-transform: uppercase;
         }
 
-        .carte-service.distributeur {
-            border-top: 5px solid var(--rouge-pizza);
+        .carte-service p {
+            color: #555;
+            margin-bottom: 10px;
         }
 
         .promo {
             display: inline-block;
-            background-color: var(--rouge-pizza);
-            color: white;
-            padding: 5px 15px;
+            background-color: var(--couleur-sombre);
+            color: var(--texte-blanc);
+            padding: 8px 20px;
             border-radius: 5px;
             font-weight: bold;
-            margin-top: 15px;
+            margin-top: 20px;
+            font-size: 1.1rem;
         }
 
         /* --- Avis Google --- */
         .avis {
             padding: 80px 5%;
             text-align: center;
-            background-color: var(--vert-pizza);
-            color: white;
+            background-color: var(--couleur-accent);
+            color: var(--texte-blanc);
         }
 
         .avis h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .avis p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .bouton-avis {
+            background-color: var(--couleur-sombre);
+        }
+        
+        .bouton-avis:hover {
+            background-color: #222522;
         }
 
         /* --- Pied de page (Footer) --- */
         footer {
-            background-color: #222;
-            color: white;
-            padding: 50px 5%;
+            background-color: var(--couleur-sombre);
+            color: #bbb;
+            padding: 70px 5%;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            gap: 40px;
         }
 
         footer h4 {
-            margin-bottom: 20px;
-            color: var(--vert-pizza);
+            margin-bottom: 25px;
+            color: var(--couleur-accent);
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+
+        footer p {
+            margin-bottom: 10px;
         }
 
         .footer-bas {
             text-align: center;
-            background-color: #111;
-            color: #777;
-            padding: 15px;
+            background-color: #2c302b;
+            color: #888;
+            padding: 20px;
             font-size: 0.9rem;
+            border-top: 1px solid #444;
         }
 
         /* --- Mobile Responsive --- */
@@ -192,6 +227,7 @@
             header {
                 flex-direction: column;
                 gap: 20px;
+                padding: 20px;
             }
             nav ul {
                 flex-direction: column;
@@ -207,7 +243,9 @@
 <body>
 
     <header>
-        <div class="logo">PIZZA <span>MI</span></div>
+        <a href="#" class="logo">
+            <img src="pizzami.png" alt="Logo PIZZA MI">
+        </a>
         <nav>
             <ul>
                 <li><a href="#">Accueil</a></li>
@@ -216,12 +254,12 @@
                 <li><a href="privatisation.html">Privatisation</a></li>
             </ul>
         </nav>
-        <a href="tel:+33619655999" class="bouton bouton-rouge">📞 06 19 65 59 99</a>
+        <a href="tel:+33619655999" class="bouton bouton-contact">📞 06 19 65 59 99</a>
     </header>
 
     <section class="hero">
         <h1>L'authentique pizza généreuse</h1>
-        <p>Créé en 2006 par un pizzaïolo passionné. Un concept axé sur la famille : une qualité irréprochable, une quantité généreuse et le prix le plus juste.</p>
+        <p>Créé en 2006 par un pizzaïolo passionné. Un concept familial : une qualité irréprochable, une quantité généreuse et le prix le plus juste.</p>
         <a href="carte.html" class="bouton">Découvrir notre carte</a>
     </section>
 
@@ -231,7 +269,8 @@
             
             <div class="carte-service">
                 <h3>🚚 Notre Camion</h3>
-                <p><strong>Parking de Neptune</strong><br>07700 Bourg-Saint-Andéol</p>
+                <p><strong>Parking de Neptune</strong></p>
+                <p>07700 Bourg-Saint-Andéol</p>
                 <br>
                 <p>Ouvert du mardi au samedi soir dès 18h00.</p>
                 <br>
@@ -247,11 +286,13 @@
                 <a href="privatisation.html" class="bouton">Se renseigner</a>
             </div>
 
-            <div class="carte-service distributeur">
+            <div class="carte-service">
                 <h3>🍕 Distributeur 24/24</h3>
-                <p><strong>Gang of Pizza</strong><br>Z.A Les Auches (en face de Chausson)<br>07700 Bourg-Saint-Andéol</p>
+                <p><strong>Gang of Pizza</strong></p>
+                <p>Z.A Les Auches (en face de Chausson)</p>
+                <p>07700 Bourg-Saint-Andéol</p>
                 <br>
-                <p>Venez découvrir de nouvelles recettes à toute heure du jour et de la nuit.</p>
+                <p>De nouvelles recettes à toute heure.</p>
                 <div class="promo">-10% avec le code : 311226</div>
             </div>
 
@@ -261,29 +302,30 @@
     <section class="avis">
         <h2>Recommandé 2025</h2>
         <p>Votre satisfaction est notre priorité depuis près de 20 ans. Partagez votre expérience !</p>
-        <br>
-        <a href="#" class="bouton bouton-rouge">Laisser un avis Google</a>
+        <a href="#" class="bouton bouton-avis">Laisser un avis Google</a>
     </section>
 
     <footer>
         <div>
             <h4>PIZZA MI</h4>
-            <p>Camion de pizzas artisanales depuis 2006.</p>
+            <p>Camion de pizzas artisanales à Bourg-Saint-Andéol depuis 2006.</p>
         </div>
         <div>
             <h4>Contact</h4>
             <p>📞 06 19 65 59 99</p>
-            <p>📍 Parking de Neptune<br>07700 Bourg-Saint-Andéol</p>
+            <p>📍 Parking de Neptune</p>
+            <p>07700 Bourg-Saint-Andéol</p>
         </div>
         <div>
             <h4>Société</h4>
             <p>SASU PIZZA MI</p>
+            <p>Zone Artisanale des Auches</p>
             <p>46 Chemin Farigoule</p>
             <p>07700 Bourg-Saint-Andéol</p>
         </div>
     </footer>
     <div class="footer-bas">
-        <p>© 2026 PIZZA MI - Tous droits réservés | Mentions légales et politique de confidentialité</p>
+        <p>© 2026 PIZZA MI - Tous droits réservés | Mentions légales</p>
     </div>
 
 </body>
