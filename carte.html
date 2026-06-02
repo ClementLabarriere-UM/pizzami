@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre Carte | PIZZA MI</title>
+    <style>
+        /* --- Styles de base et Identité --- */
+        :root {
+            --couleur-sombre: #373C36; /* Noir/Gris charbon */
+            --couleur-accent: #61C629; /* Vert vif */
+            --texte-blanc: #ffffff;
+            --fond-clair: #f9f9f9;
+            --gris-menu: #555555;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--couleur-sombre);
+            line-height: 1.6;
+            background-color: var(--fond-clair);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .bouton {
+            display: inline-block;
+            background-color: var(--couleur-accent);
+            color: var(--texte-blanc);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .bouton:hover {
+            background-color: #4da31e;
+            transform: translateY(-2px);
+        }
+
+        .bouton-contact {
+            background-color: var(--couleur-sombre);
+        }
+
+        .bouton-contact:hover {
+            background-color: #222522;
+        }
+
+        /* --- En-tête (Header) --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            max-height: 60px;
+            width: auto;
+            display: block;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            font-weight: 600;
+        }
+
+        nav a:hover, nav .actif {
+            color: var(--couleur-accent);
+        }
+
+        /* --- Bannière de Page --- */
+        .banniere-page {
+            background-color: var(--couleur-sombre);
+            color: var(--texte-blanc);
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .banniere-page h1 {
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .banniere-page p {
+            color: var(--couleur-accent);
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        /* --- Sections du Menu --- */
+        .section-menu {
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .titre-categorie {
+            font-size: 2rem;
+            text-transform: uppercase;
+            border-left: 5px solid var(--couleur-accent);
+            padding-left: 15px;
+            margin-bottom: 40px;
+            color: var(--couleur-sombre);
+        }
+
+        /* --- Grille des Pizzas --- */
+        .grille-pizzas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        .carte-pizza {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #eee;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .carte-pizza:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+        }
+
+        .pizza-entete {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .pizza-nom {
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .pizza-prix {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--couleur-accent);
+            white-space: nowrap;
+        }
+
+        .pizza-slogan {
+            font-size: 0.85rem;
+            font-style: italic;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .pizza-ingredients {
+            color: var(--gris-menu);
+            font-size: 0.95rem;
+        }
+
+        /* --- Section Infos Latérales / Suppléments --- */
+        .infos-carte {
+            background-color: var(--couleur-sombre);
+            color: var(--texte-blanc);
+            padding: 50px 5%;
+            margin-top: 40px;
+        }
+
+        .conteneur-infos {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .bloc-info h3 {
+            color: var(--couleur-accent);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .bloc-info ul {
+            list-style: none;
+        }
+
+        .bloc-info li {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #555;
+            padding-bottom: 5px;
+        }
+
+        .note-supplement {
+            font-size: 0.9rem;
+            color: #bbb;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .liste-paiements {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .badge-paiement {
+            background: #4e544d;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* --- Pied de page (Footer) --- */
+        footer {
+            background-color: var(--couleur-sombre);
+            color: #bbb;
+            padding: 70px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            border-top: 1px solid #444;
+        }
+
+        footer h4 {
+            margin-bottom: 25px;
+            color: var(--couleur-accent);
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        .footer-bas {
+            text-align: center;
+            background-color: #2c302b;
+            color: #888;
+            padding: 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid #444;
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            .banniere-page h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- En-tête -->
+    <header>
+        <a href="index.html" class="logo">
+            <img src="pizzami.png" alt="Logo PIZZA MI">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="#" class="actif">Notre carte</a></li>
+                <li><a href="emplacement.html">Notre emplacement</a></li>
+                <li><a href="privatisation.html">Privatisation</a></li>
+            </ul>
+        </nav>
+        <a href="tel:+33619655999" class="bouton bouton-contact">📞 06 19 65 59 99</a>
+    </header>
+
+    <!-- Bannière principale -->
+    <div class="banniere-page">
+        <h1>Notre Carte</h1>
+        <p>Des ingrédients rigoureusement sélectionnés pour des pizzas d'exception</p>
+    </div>
+
+    <!-- SECTION : SAUCE TOMATE -->
+    <section class="section-menu">
+        <h2 class="titre-categorie">Nos Pizzas - Base Sauce Tomate</h2>
+        <div class="grille-pizzas">
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Margarita</span>
+                        <span class="pizza-prix">6,90 €</span>
+                    </div>
+                    <div class="pizza-slogan">Pizza à prix mini</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Sicilia</span>
+                        <span class="pizza-prix">9,50 €</span>
+                    </div>
+                    <div class="pizza-slogan">Duo classique dont on ne se lasse jamais</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, jambon, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Napolitaine</span>
+                        <span class="pizza-prix">10,50 €</span>
+                    </div>
+                    <div class="pizza-slogan">Aller simple en Italie</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, anchois, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Capricia</span>
+                        <span class="pizza-prix">11,00 €</span>
+                    </div>
+                    <div class="pizza-slogan">Un caractère bien trempé</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, anchois, câpres, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Régina</span>
+                        <span class="pizza-prix">10,50 €</span>
+                    </div>
+                    <div class="pizza-slogan">La reine incontestée de vos soirées</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, jambon, champignons, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Océana</span>
+                        <span class="pizza-prix">10,20 €</span>
+                    </div>
+                    <div class="pizza-slogan">La douceur à l'état pur</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, thon, crème, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Strasbourgeoise</span>
+                        <span class="pizza-prix">9,40 €</span>
+                    </div>
+                    <div class="pizza-slogan">Petit détour en Alsace</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, knacki, moutarde, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Basquaise</span>
+                        <span class="pizza-prix">12,90 €</span>
+                    </div>
+                    <div class="pizza-slogan">Direction le sud-ouest</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, poulet, oignons, poivrons, ail, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Andouillette</span>
+                        <span class="pizza-prix">10,50 €</span>
+                    </div>
+                    <div class="pizza-slogan">Pour les amateurs de saveurs</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, andouillette, moutarde, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Fromagia</span>
+                        <span class="pizza-prix">12,90 €</span>
+                    </div>
+                    <div class="pizza-slogan">Le duo gagnant (ou fondant !)</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, chèvre, roquefort, mozzarella, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Lardon</span>
+                        <span class="pizza-prix">12,00 €</span>
+                    </div>
+                    <div class="pizza-slogan">Le réconfort absolu</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, crème fraîche, chèvre, lardons, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Spagniola</span>
+                        <span class="pizza-prix">11,90 €</span>
+                    </div>
+                    <div class="pizza-slogan">Prêt à cracher du feu ?</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, chorizo, merguez, poivrons, oignons, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Marine</span>
+                        <span class="pizza-prix">11,00 €</span>
+                    </div>
+                    <div class="pizza-slogan">Préparez vos masques et vos tubas</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, fruits de mer, ail, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Provençale</span>
+                        <span class="pizza-prix">12,00 €</span>
+                    </div>
+                    <div class="pizza-slogan">Le chant des cigales s'invite</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, tomate fraîche, aubergine, mozzarella, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Tropicale</span>
+                        <span class="pizza-prix">11,30 €</span>
+                    </div>
+                    <div class="pizza-slogan">Le mélange pourrait vous surprendre</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, champignons, ananas, gruyère, curry, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Aosta</span>
+                        <span class="pizza-prix">12,90 €</span>
+                    </div>
+                    <div class="pizza-slogan">Pour les gourmands</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, champignons, mozzarella, jambon cru, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Brandade</span>
+                        <span class="pizza-prix">12,00 €</span>
+                    </div>
+                    <div class="pizza-slogan">Le clin d'œil aux nîmois</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, brandade, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Miel</span>
+                        <span class="pizza-prix">12,90 €</span>
+                    </div>
+                    <div class="pizza-slogan">L'incontournable sucré-salé</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, chèvre, miel, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Ardèchoise</span>
+                        <span class="pizza-prix">12,90 €</span>
+                    </div>
+                    <div class="pizza-slogan">La caillette à l'honneur</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, caillette, pomme de terre, oignons, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Kebab</span>
+                        <span class="pizza-prix">12,00 €</span>
+                    </div>
+                    <div class="pizza-slogan">Pizza ou kebab ? Les deux !</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, kebab, oignons, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Bolognaise</span>
+                        <span class="pizza-prix">12,00 €</span>
+                    </div>
+                    <div class="pizza-slogan">On revisite vos pâtes</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, viande de bœuf hachée, oignons, crème, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Végétarienne</span>
+                        <span class="pizza-prix">12,50 €</span>
+                    </div>
+                    <div class="pizza-slogan">Petit tour du potager</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, aubergine, champignons, artichauts, fromage.</p>
+                </div>
+            </div>
+
+            <div class="carte-pizza">
+                <div>
+                    <div class="pizza-entete">
+                        <span class="pizza-nom">Burger</span>
+                        <span class="pizza-prix">13,50 €</span>
+                    </div>
+                    <div class="pizza-slogan">Pizza ou burger ? Les deux !</div>
+                    <p class="pizza-ingredients">Sauce tomate, olives, viande de bœuf hachée, jambon cru, oignons, sauce burger, cornichons aigre doux, cheddar râpé, fromage.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION : CRÈME FRAÎCHE -->
+    <section class="section-menu" style="background-color: #fff; border-top: 1px solid #eee; border-bottom: 1px solid #eee; max-width: 100%;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 20px 0;">
+            <h2 class="titre-categorie">Nos Pizzas - Base Crème Fraîche</h2>
+            <div class="grille-pizzas">
+
+                <div class="carte-pizza" style="background: var(--fond-clair);">
+                    <div>
+                        <div class="pizza-entete">
+                            <span class="pizza-nom">Miel</span>
+                            <span class="pizza-prix">12,90 €</span>
+                        </div>
+                        <div class="pizza-slogan">L'incontournable sucré-salé</div>
+                        <p class="pizza-ingredients">Crème fraîche, olives, chèvre, miel, fromage.</p>
+                    </div>
+                </div>
+
+                <div class="carte-pizza" style="background: var(--fond-clair);">
+                    <div>
+                        <div class="pizza-entete">
+                            <span class="pizza-nom">Reblochon</span>
+                            <span class="pizza-prix">12,90 €</span>
+                        </div>
+                        <div class="pizza-slogan">L'esprit tartiflette pour les solides appétits</div>
+                        <p class="pizza-ingredients">Crème fraîche, olives, reblochon, lardons, pomme de terre, oignons, fromage.</p>
+                    </div>
+                </div>
+
+                <div class="carte-pizza" style="background: var(--fond-clair);">
+                    <div>
+                        <div class="pizza-entete">
+                            <span class="pizza-nom">Norvégia</span>
+                            <span class="pizza-prix">12,90 €</span>
+                        </div>
+                        <div class="pizza-slogan">Voyage direct en Norvège</div>
+                        <p class="pizza-ingredients">Crème fraîche, olives, saumon fumé, fromage.</p>
+                    </div>
+                </div>
+
+                <div class="carte-pizza" style="background: var(--fond-clair);">
+                    <div>
+                        <div class="pizza-entete">
+                            <span class="pizza-nom">Mi</span>
+                            <span class="pizza-prix">12,90 €</span>
+                        </div>
+                        <div class="pizza-slogan">Fierté du camion</div>
+                        <p class="pizza-ingredients">Crème fraîche, olives, saumon fumé, ravioles, fromage.</p>
+                    </div>
+                </div>
+
+                <div class="carte-pizza" style="background: var(--fond-clair);">
+                    <div>
+                        <div class="pizza-entete">
+                            <span class="pizza-nom">Curry</span>
+                            <span class="pizza-prix">12,90 €</span>
+                        </div>
+                        <div class="pizza-slogan">Un aller simple pour les indes</div>
+                        <p class="pizza-ingredients">Crème fraîche, olives, poulet, oignons, curry, fromage.</p>
+                    </div>
+                </div>
+
+                <div class="carte-pizza" style="background: var(--fond-clair);">
+                    <div>
+                        <div class="pizza-entete">
+                            <span class="pizza-nom">Pasta</span>
+                            <span class="pizza-prix">11,90 €</span>
+                        </div>
+                        <div class="pizza-slogan">Pizza ou pâtes ? Les deux !</div>
+                        <p class="pizza-ingredients">Crème fraîche, olives, ravioles, fromage.</p>
+                    </div>
+                </div>
+
+                <div class="carte-pizza" style="background: var(--fond-clair);">
+                    <div>
+                        <div class="pizza-entete">
+                            <span class="pizza-nom">Pasta 2</span>
+                            <span class="pizza-prix">12,90 €</span>
+                        </div>
+                        <div class="pizza-slogan">La gourmandise dauphinoise</div>
+                        <p class="pizza-ingredients">Crème fraîche, olives, ravioles, roquefort OU lardons OU jambon, fromage.</p>
+                    </div>
+                </div>
+
+                <div class="carte-pizza" style="background: var(--fond-clair);">
+                    <div>
+                        <div class="pizza-entete">
+                            <span class="pizza-nom">Spéciale</span>
+                            <span class="pizza-prix">12,90 €</span>
+                        </div>
+                        <div class="pizza-slogan">Car on a tous ce côté spécial</div>
+                        <p class="pizza-ingredients">Crème fraîche, olives, jambon, champignons, roquefort OU reblochon, fromage.</p>
+                    </div>
+                </div>
+
+                <div class="carte-pizza" style="background: var(--fond-clair);">
+                    <div>
+                        <div class="pizza-entete">
+                            <span class="pizza-nom">Camembert</span>
+                            <span class="pizza-prix">12,60 €</span>
+                        </div>
+                        <div class="pizza-slogan">Pour ceux qui ont du caractère</div>
+                        <p class="pizza-ingredients">Crème fraîche, olives, demi-camembert, lardons, oignons, herbes de Provence, fromage.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION INFOS & SUPPLÉMENTS -->
+    <div class="infos-carte">
+        <div class="conteneur-infos">
+            <div class="bloc-info">
+                <h3>Suppléments</h3>
+                <ul>
+                    <li><span>Viande / Saumon</span> <span>2,00 €</span></li>
+                    <li><span>Autre ingrédient</span> <span>1,50 €</span></li>
+                </ul>
+                <p class="note-supplement">Note : Lorsque vous passez d'une base tomate à une base crème, un supplément de 0,50 € vous sera facturé.</p>
+            </div>
+            <div class="bloc-info">
+                <h3>Moyens de paiement</h3>
+                <p>Nous acceptons les règlements suivants au camion :</p>
+                <div class="liste-paiements">
+                    <span class="badge-paiement">Carte Bancaire (CB)</span>
+                    <span class="badge-paiement">Chèque</span>
+                    <span class="badge-paiement">Espèces</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pied de page -->
+    <footer>
+        <div>
+            <h4>PIZZA MI</h4>
+            <p>Camion de pizzas artisanales à Bourg-Saint-Andéol depuis 2006.</p>
+        </div>
+        <div>
+            <h4>Contact</h4>
+            <p>📞 06 19 65 59 99</p>
+            <p>📍 Parking de Neptune</p>
+            <p>07700 Bourg-Saint-Andéol</p>
+        </div>
+        <div>
+            <h4>Société</h4>
+            <p>SASU PIZZA MI</p>
+            <p>Zone Artisanale des Auches</p>
+            <p>46 Chemin Farigoule</p>
+            <p>07700 Bourg-Saint-Andéol</p>
+        </div>
+    </footer>
+    <div class="footer-bas">
+        <p>© 2026 PIZZA MI - Tous droits réservés | Mentions légales</p>
+    </div>
+
+</body>
+</html>
