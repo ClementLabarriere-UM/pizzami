@@ -4,315 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notre Carte | PIZZA MI</title>
+    <link rel="icon" type="image/png" href="pizzami.png">
     <style>
-        /* --- Styles de base et Identité --- */
         :root {
-            --couleur-sombre: #373C36; /* Noir/Gris charbon */
-            --couleur-accent: #61C629; /* Vert vif */
+            --couleur-sombre: #373C36;
+            --couleur-accent: #61C629;
             --texte-blanc: #ffffff;
-            --fond-clair: #f9f9f9;
-            --gris-menu: #555555;
+            --fond-clair: #f4f7f6;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
-        body {
-            color: var(--couleur-sombre);
-            line-height: 1.6;
-            background-color: var(--fond-clair);
-        }
+        body { color: var(--couleur-sombre); line-height: 1.6; background-color: var(--fond-clair); overflow-x: hidden; }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+        a { text-decoration: none; color: inherit; }
 
         .bouton {
             display: inline-block;
             background-color: var(--couleur-accent);
-            color: var(--texte-blanc);
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: background 0.3s, transform 0.2s;
-        }
-
-        .bouton:hover {
-            background-color: #4da31e;
-            transform: translateY(-2px);
-        }
-
-        .bouton-contact {
-            background-color: var(--couleur-sombre);
-        }
-
-        .bouton-contact:hover {
-            background-color: #222522;
-        }
-
-        /* --- En-tête (Header) --- */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo img {
-            max-height: 60px;
-            width: auto;
-            display: block;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-            font-weight: 600;
-        }
-
-        nav a:hover, nav .actif {
-            color: var(--couleur-accent);
-        }
-
-        /* --- Bannière de Page --- */
-        .banniere-page {
-            background-color: var(--couleur-sombre);
-            color: var(--texte-blanc);
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        .banniere-page h1 {
-            font-size: 2.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .banniere-page p {
-            color: var(--couleur-accent);
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-top: 10px;
-        }
-
-        /* --- Sections du Menu --- */
-        .section-menu {
-            padding: 60px 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .titre-categorie {
-            font-size: 2rem;
-            text-transform: uppercase;
-            border-left: 5px solid var(--couleur-accent);
-            padding-left: 15px;
-            margin-bottom: 40px;
-            color: var(--couleur-sombre);
-        }
-
-        /* --- Grille des Pizzas Compacte --- */
-        .grille-pizzas-compacte {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 15px 50px;
-        }
-
-        .ligne-pizza {
-            padding: 10px 0;
-            border-bottom: 1px dotted #ccc;
-            transition: transform 0.2s ease;
-        }
-
-        .ligne-pizza:hover {
-            transform: translateX(5px);
-        }
-
-        .pizza-entete {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 4px;
-        }
-
-        .pizza-titre-wrap {
-            display: flex;
-            align-items: baseline;
-            flex-wrap: wrap;
-        }
-
-        .pizza-nom {
-            font-size: 1.25rem;
+            color: var(--texte-blanc) !important;
+            padding: 12px 28px;
+            border-radius: 50px;
             font-weight: 800;
-            text-transform: uppercase;
-            color: var(--couleur-sombre);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(97, 198, 41, 0.4);
         }
 
-        .pizza-slogan {
-            font-size: 0.85rem;
-            color: var(--couleur-accent);
-            font-weight: 600;
-            font-style: italic;
-            margin-left: 8px;
-        }
+        .bouton:hover { background-color: #4da31e; transform: translateY(-3px); }
 
-        .pizza-prix {
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: var(--couleur-accent);
-            white-space: nowrap;
-            margin-left: 15px;
-        }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .logo img { max-height: 60px; width: auto; display: block; transition: transform 0.4s; }
+        .logo img:hover { transform: scale(1.05) rotate(-2deg); }
 
-        .pizza-ingredients {
-            color: var(--gris-menu);
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
+        nav ul { list-style: none; display: flex; gap: 35px; font-weight: 700; text-transform: uppercase; font-size: 0.95rem; }
+        nav a { transition: color 0.3s ease; }
+        nav a:hover { color: var(--couleur-accent); }
 
-        /* --- Section Infos Latérales / Suppléments --- */
-        .infos-carte {
-            background-color: var(--couleur-sombre);
-            color: var(--texte-blanc);
-            padding: 50px 5%;
-            margin-top: 40px;
-        }
+        .banniere-page { background: linear-gradient(rgba(55, 60, 54, 0.8), rgba(55, 60, 54, 0.8)), url('camion.jpg') center/cover no-repeat; padding: 100px 20px; text-align: center; }
+        
+        .section-menu { padding: 60px 5%; max-width: 1200px; margin: 0 auto; }
+        .titre-categorie { font-size: 2rem; text-transform: uppercase; border-left: 5px solid var(--couleur-accent); padding-left: 15px; margin-bottom: 40px; color: var(--couleur-sombre); }
+        .grille-pizzas-compacte { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 15px 50px; }
+        .ligne-pizza { padding: 10px 0; border-bottom: 1px dotted #ccc; transition: transform 0.2s ease; }
+        .ligne-pizza:hover { transform: translateX(5px); }
+        .pizza-entete { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+        .pizza-nom { font-size: 1.25rem; font-weight: 800; text-transform: uppercase; }
+        .pizza-slogan { font-size: 0.85rem; color: var(--couleur-accent); font-weight: 600; font-style: italic; margin-left: 8px; }
+        .pizza-prix { font-size: 1.25rem; font-weight: bold; color: var(--couleur-accent); }
 
-        .conteneur-infos {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-        }
+        .infos-carte { background-color: var(--couleur-sombre); color: var(--texte-blanc); padding: 50px 5%; margin-top: 40px; }
+        .conteneur-infos { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .bloc-info h3 { color: var(--couleur-accent); text-transform: uppercase; margin-bottom: 20px; }
+        .badge-paiement { background: #4e544d; padding: 5px 15px; border-radius: 5px; font-weight: bold; font-size: 0.9rem; }
 
-        .bloc-info h3 {
-            color: var(--couleur-accent);
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            font-size: 1.4rem;
-        }
-
-        .bloc-info ul {
-            list-style: none;
-        }
-
-        .bloc-info li {
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px dashed #555;
-            padding-bottom: 5px;
-        }
-
-        .note-supplement {
-            font-size: 0.9rem;
-            color: #bbb;
-            margin-top: 15px;
-            font-style: italic;
-        }
-
-        .liste-paiements {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .badge-paiement {
-            background: #4e544d;
-            padding: 5px 15px;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        /* --- Pied de page (Footer) --- */
-        footer {
-            background-color: var(--couleur-sombre);
-            color: #bbb;
-            padding: 70px 5%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            border-top: 1px solid #444;
-        }
-
-        footer h4 {
-            margin-bottom: 25px;
-            color: var(--couleur-accent);
-            text-transform: uppercase;
-            font-size: 1.2rem;
-        }
-
-        footer p {
-            margin-bottom: 10px;
-        }
-
-        .footer-bas {
-            text-align: center;
-            background-color: #2c302b;
-            color: #888;
-            padding: 20px;
-            font-size: 0.9rem;
-            border-top: 1px solid #444;
-        }
-
-        /* --- Mobile Responsive --- */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 20px;
-                padding: 20px;
-            }
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-            }
-            .banniere-page h1 {
-                font-size: 2rem;
-            }
-        }
+        footer { background-color: #373C36; color: #ffffff; padding: 70px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        footer h4 { margin-bottom: 25px; color: var(--couleur-accent); text-transform: uppercase; font-size: 1.2rem; }
+        .footer-bas { text-align: center; background-color: #2b2f2a; color: #ffffff; padding: 20px; font-size: 0.9rem; border-top: 1px solid #444; }
     </style>
 </head>
 <body>
 
-    <!-- En-tête -->
     <header>
-        <a href="index.html" class="logo">
-            <img src="pizzami.png" alt="Logo PIZZA MI">
-        </a>
+        <a href="index.html" class="logo"><img src="pizzami.png" alt="Logo PIZZA MI"></a>
         <nav>
             <ul>
                 <li><a href="index.html">Accueil</a></li>
-                <li><a href="#" class="actif">Notre carte</a></li>
+                <li><a href="carte.html" style="color: var(--couleur-accent);">Notre carte</a></li>
                 <li><a href="emplacement.html">Notre emplacement</a></li>
                 <li><a href="privatisation.html">Privatisation</a></li>
             </ul>
         </nav>
-        <a href="tel:+33619655999" class="bouton bouton-contact">📞 06 19 65 59 99</a>
+        <a href="tel:+33619655999" class="bouton">📞 06 19 65 59 99</a>
     </header>
 
-    <!-- Bannière principale -->
     <div class="banniere-page">
-        <h1>Notre Carte</h1>
-        <p>Des ingrédients rigoureusement sélectionnés pour des pizzas d'exception</p>
+        <h1 style="color: white; font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">NOTRE CARTE</h1>
+        <p style="color: #61C629; font-weight: bold; font-size: 1.2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">Des ingrédients rigoureusement sélectionnés pour des pizzas d'exception</p>
     </div>
 
     <!-- SECTION : SAUCE TOMATE -->
@@ -522,7 +290,7 @@
 
                 <div class="ligne-pizza">
                     <div class="pizza-entete">
-                        <div class="pizza-titre-wrap"><span class="pizza-nom">Reblochon</span> <span class="pizza-slogan">- L'esprit tartiflette pour les solides appétits</span></div>
+                        <div class="pizza-titre-wrap"><span class="pizza-nom">Reblochon</span> <span class="pizza-slogan">- L'esprit tartiflette</span></div>
                         <span class="pizza-prix">12,90 €</span>
                     </div>
                     <p class="pizza-ingredients">Crème fraîche, olives, reblochon, lardons, pomme de terre, oignons, fromage.</p>
@@ -586,51 +354,27 @@
         </div>
     </section>
 
-    <!-- SECTION INFOS & SUPPLÉMENTS -->
     <div class="infos-carte">
         <div class="conteneur-infos">
             <div class="bloc-info">
                 <h3>Suppléments</h3>
-                <ul>
-                    <li><span>Viande / Saumon</span> <span>2,00 €</span></li>
-                    <li><span>Autre ingrédient</span> <span>1,50 €</span></li>
-                </ul>
+                <p>Viande / Saumon : 2,00 € | Autre : 1,50 €</p>
                 <p class="note-supplement">Note : Lorsque vous passez d'une base tomate à une base crème, un supplément de 0,50 € vous sera facturé.</p>
             </div>
             <div class="bloc-info">
                 <h3>Moyens de paiement</h3>
-                <p>Nous acceptons les règlements suivants au camion :</p>
-                <div class="liste-paiements">
-                    <span class="badge-paiement">Carte Bancaire (CB)</span>
-                    <span class="badge-paiement">Espèces</span>
-                </div>
+                <span class="badge-paiement">CB</span> <span class="badge-paiement">Espèces</span>
             </div>
         </div>
     </div>
 
-    <!-- Pied de page -->
     <footer>
-        <div>
-            <h4>PIZZA MI</h4>
-            <p>Camion de pizzas artisanales à Bourg-Saint-Andéol depuis 2006.</p>
-        </div>
-        <div>
-            <h4>Contact</h4>
-            <p>📞 06 19 65 59 99</p>
-            <p>📍 Parking de Neptune</p>
-            <p>07700 Bourg-Saint-Andéol</p>
-        </div>
-        <div>
-            <h4>Société</h4>
-            <p>SASU PIZZA MI</p>
-            <p>Zone Artisanale des Auches</p>
-            <p>46 Chemin Farigoule</p>
-            <p>07700 Bourg-Saint-Andéol</p>
-        </div>
+        <div><h4>PIZZA MI</h4><p>Camion de pizzas artisanales à Bourg-Saint-Andéol depuis 2006.</p></div>
+        <div><h4>Contact</h4><p>📞 06 19 65 59 99</p><p>📍 Parking de Neptune</p></div>
+        <div><h4>Société</h4><p>SASU PIZZA MI</p><p>Clément Labarriere</p><p>SIRET : 847 920 733 00023</p></div>
     </footer>
     <div class="footer-bas">
-        <p>© 2026 PIZZA MI - Tous droits réservés | Mentions légales</p>
+        <p>© 2026 <a href="https://www.digiclem.fr" target="_blank" style="color: #61C629; font-weight: bold;">digiclem</a> - Tous droits réservés | <a href="mentions-legales.html" style="color: #ffffff;">Mentions légales</a></p>
     </div>
-
 </body>
 </html>

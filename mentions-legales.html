@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions Légales | PIZZA MI</title>
+    <link rel="icon" type="image/png" href="pizzami.png">
+    <style>
+        /* --- Styles de base --- */
+        :root {
+            --couleur-sombre: #373C36;
+            --couleur-accent: #61C629;
+            --texte-blanc: #ffffff;
+            --fond-clair: #f4f7f6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--couleur-sombre);
+            line-height: 1.6;
+            background-color: var(--fond-clair);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- Boutons Haut de Page --- */
+        .bouton {
+            display: inline-block;
+            background-color: var(--couleur-accent);
+            color: var(--texte-blanc) !important;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(97, 198, 41, 0.4);
+        }
+
+        .bouton:hover {
+            background-color: #4da31e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(97, 198, 41, 0.6);
+        }
+
+        /* --- En-tête (Header) --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo img {
+            max-height: 60px;
+            width: auto;
+            display: block;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .logo img:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 35px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+        }
+
+        nav a {
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--couleur-accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after, nav a[style*="color: var(--couleur-accent)"]::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--couleur-accent);
+        }
+
+        /* --- Bannière de Page --- */
+        .banniere-page {
+            background-color: var(--couleur-sombre);
+            color: var(--texte-blanc);
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .banniere-page h1 {
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--texte-blanc);
+        }
+
+        /* --- Contenu Légal --- */
+        .contenu-legal {
+            padding: 60px 5%;
+            max-width: 900px;
+            margin: 0 auto;
+            flex-grow: 1;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 10px;
+            margin-top: -30px;
+            margin-bottom: 60px;
+        }
+
+        .contenu-legal h2 {
+            color: var(--couleur-accent);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .contenu-legal p, .contenu-legal ul {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .contenu-legal ul {
+            padding-left: 20px;
+        }
+
+        .contenu-legal strong {
+            color: var(--couleur-sombre);
+        }
+
+        /* --- Pied de page (Footer) --- */
+        footer {
+            background-color: #373C36;
+            color: #ffffff;
+            padding: 70px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: auto;
+        }
+
+        footer h4 {
+            margin-bottom: 25px;
+            color: var(--couleur-accent);
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .footer-bas {
+            text-align: center;
+            background-color: #2b2f2a;
+            color: #ffffff;
+            padding: 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid #444;
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            .contenu-legal {
+                margin-top: 20px;
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="logo">
+            <img src="pizzami.png" alt="Logo PIZZA MI">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="carte.html">Notre carte</a></li>
+                <li><a href="emplacement.html">Notre emplacement</a></li>
+                <li><a href="privatisation.html">Privatisation</a></li>
+            </ul>
+        </nav>
+        <a href="tel:+33619655999" class="bouton">📞 06 19 65 59 99</a>
+    </header>
+
+    <!-- Bannière principale -->
+    <div class="banniere-page">
+        <h1>Mentions Légales</h1>
+    </div>
+
+    <!-- Contenu -->
+    <main class="contenu-legal">
+        <h2>1. Éditeur du site</h2>
+        <p>Le site <strong>pizzami.fr</strong> est édité par la société <strong>SASU PIZZA MI</strong>.</p>
+        <ul>
+            <li><strong>Siège social :</strong> Zone Artisanale des Auches, 46 Chemin Farigoule, 07700 Bourg-Saint-Andéol</li>
+            <li><strong>Téléphone :</strong> 06 19 65 59 99</li>
+            <li><strong>Forme juridique :</strong> SASU au capital de 1 000 €</li>
+            <li><strong>SIRET :</strong> 847 920 733 00023</li>
+            <li><strong>RCS :</strong> 847 920 733 R.C.S. Aubenas</li>
+        </ul>
+
+        <h2>2. Directeur de la publication</h2>
+        <p>Le Directeur de la publication est <strong>Clément Labarriere</strong>.</p>
+
+        <h2>3. Création du site web</h2>
+        <p>Le site a été conçu et réalisé par l'agence <strong>Digiclem</strong>.</p>
+        <ul>
+            <li><strong>Site web :</strong> <a href="https://www.digiclem.fr" target="_blank" style="color: var(--couleur-accent);">www.digiclem.fr</a></li>
+        </ul>
+
+        <h2>4. Hébergement</h2>
+        <p>Ce site est hébergé par la société <strong>Hostinger</strong>.</p>
+        <ul>
+            <li><strong>Nom de l'hébergeur :</strong> Hostinger International Ltd.</li>
+            <li><strong>Adresse :</strong> 61 Lordou Vironos Street, 6023 Larnaca, Chypre</li>
+            <li><strong>Site web :</strong> <a href="https://www.hostinger.fr" target="_blank" style="color: var(--couleur-accent);">www.hostinger.fr</a></li>
+        </ul>
+
+        <h2>5. Propriété intellectuelle</h2>
+        <p>L'ensemble de ce site relève de la législation française et internationale sur le droit d'auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables et les représentations iconographiques et photographiques. La reproduction de tout ou partie de ce site sur un support électronique quel qu'il soit est formellement interdite sauf autorisation expresse du directeur de la publication.</p>
+
+        <h2>6. Protection des données personnelles (RGPD)</h2>
+        <p>Les informations recueillies sur ce site ne sont utilisées que dans le cadre légal prévu en France pour le respect de la vie privée. Conformément à la loi « informatique et libertés » du 6 janvier 1978 modifiée et au Règlement Européen sur la Protection des Données (RGPD), vous bénéficiez d’un droit d’accès, de rectification, de portabilité et d’effacement de vos données ou encore de limitation du traitement. Vous pouvez exercer ce droit en nous contactant directement par téléphone au 06 19 65 59 99.</p>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background-color: #373C36; color: #ffffff; padding: 70px 5% 50px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: auto;">
+        <div>
+            <h4 style="color: #61C629; margin-bottom: 25px; text-transform: uppercase; font-size: 1.2rem; letter-spacing: 1px;">PIZZA MI</h4>
+            <p style="color: #ffffff; margin-bottom: 10px;">Camion de pizzas artisanales à Bourg-Saint-Andéol depuis 2006.</p>
+        </div>
+        <div>
+            <h4 style="color: #61C629; margin-bottom: 25px; text-transform: uppercase; font-size: 1.2rem; letter-spacing: 1px;">Contact</h4>
+            <p style="color: #ffffff; margin-bottom: 10px;">📞 06 19 65 59 99</p>
+            <p style="color: #ffffff; margin-bottom: 10px;">📍 Parking de Neptune</p>
+            <p style="color: #ffffff; margin-bottom: 10px;">07700 Bourg-Saint-Andéol</p>
+        </div>
+        <div>
+            <h4 style="color: #61C629; margin-bottom: 25px; text-transform: uppercase; font-size: 1.2rem; letter-spacing: 1px;">Société</h4>
+            <p style="color: #ffffff; margin-bottom: 10px;">SASU PIZZA MI</p>
+            <p style="color: #ffffff; margin-bottom: 10px;">Zone Artisanale des Auches</p>
+            <p style="color: #ffffff; margin-bottom: 10px;">46 Chemin Farigoule</p>
+            <p style="color: #ffffff; margin-bottom: 10px;">07700 Bourg-Saint-Andéol</p>
+        </div>
+    </footer>
+    <div class="footer-bas" style="text-align: center; background-color: #2b2f2a; color: #ffffff; padding: 20px; font-size: 0.9rem; border-top: 1px solid #444;">
+        <p style="color: #ffffff;">© 2026 <a href="https://www.digiclem.fr" target="_blank" style="color: #61C629; font-weight: bold;">digiclem</a> - Tous droits réservés | <a href="mentions-legales.html" style="color: #ffffff;">Mentions légales</a></p>
+    </div>
+
+</body>
+</html>
