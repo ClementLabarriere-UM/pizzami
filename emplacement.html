@@ -26,6 +26,9 @@
             line-height: 1.6;
             background-color: var(--fond-clair);
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         a {
@@ -33,7 +36,7 @@
             color: inherit;
         }
 
-        /* --- Boutons Haut de Page --- */
+        /* --- Boutons --- */
         .bouton {
             display: inline-block;
             background-color: var(--couleur-accent);
@@ -44,6 +47,7 @@
             font-size: 1.1rem;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(97, 198, 41, 0.4);
+            text-align: center;
         }
 
         .bouton:hover {
@@ -52,64 +56,34 @@
             box-shadow: 0 8px 25px rgba(97, 198, 41, 0.6);
         }
 
-        /* --- En-tête (Header) --- */
+        /* --- Header (Version Responsive) --- */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 5%;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            padding: 10px 5%;
+            background: rgba(255, 255, 255, 0.98);
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
 
-        .logo img {
-            max-height: 60px;
-            width: auto;
-            display: block;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        .logo img:hover {
-            transform: scale(1.05) rotate(-2deg);
-        }
+        .logo img { max-height: 100px; width: auto; transition: transform 0.4s; }
+        .logo img:hover { transform: scale(1.05) rotate(-2deg); }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 35px;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.95rem;
-        }
+        .header-right { display: flex; align-items: center; gap: 20px; }
 
-        nav a {
-            position: relative;
-            padding-bottom: 5px;
-            transition: color 0.3s ease;
-        }
+        nav ul { list-style: none; display: flex; gap: 35px; font-weight: 700; text-transform: uppercase; font-size: 0.95rem; }
+        nav a { position: relative; padding-bottom: 5px; transition: color 0.3s ease; }
+        nav a::after { content: ''; position: absolute; width: 0; height: 3px; bottom: 0; left: 0; background-color: var(--couleur-accent); transition: width 0.3s ease; }
+        nav a:hover::after, nav a[style*="color: var(--couleur-accent)"]::after { width: 100%; }
+        nav a:hover { color: var(--couleur-accent); }
 
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 3px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--couleur-accent);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after, nav a[style*="color: var(--couleur-accent)"]::after {
-            width: 100%;
-        }
-
-        nav a:hover {
-            color: var(--couleur-accent);
-        }
+        /* Styles du bouton Menu (Caché sur PC) */
+        .menu-toggle { display: none; cursor: pointer; padding: 10px; }
+        .menu-text { font-size: 1.6rem; font-weight: 900; text-transform: uppercase; }
+        .menu-icon { font-size: 3rem; line-height: 0.8; }
 
         /* --- Section Emplacement (Héro avec camion) --- */
         .section-emplacement {
@@ -180,12 +154,12 @@
         .actions-boutons .bouton-secondaire {
             background-color: transparent;
             border: 2px solid var(--couleur-accent);
-            color: var(--couleur-accent);
+            color: var(--couleur-accent) !important;
         }
 
         .actions-boutons .bouton-secondaire:hover {
             background-color: var(--couleur-accent);
-            color: var(--texte-blanc);
+            color: var(--texte-blanc) !important;
         }
 
         /* --- Map Section --- */
@@ -203,12 +177,13 @@
 
         /* --- Pied de page (Footer) --- */
         footer {
-            background-color: var(--couleur-sombre);
-            color: #bbb;
+            background-color: #373C36;
+            color: #ffffff;
             padding: 70px 5%;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
+            margin-top: auto;
         }
 
         footer h4 {
@@ -216,44 +191,36 @@
             color: var(--couleur-accent);
             text-transform: uppercase;
             font-size: 1.2rem;
+            letter-spacing: 1px;
         }
 
         footer p {
             margin-bottom: 10px;
+            color: #ffffff;
         }
 
         .footer-bas {
             text-align: center;
-            background-color: #2c302b;
-            color: #888;
+            background-color: #2b2f2a;
+            color: #ffffff;
             padding: 20px;
             font-size: 0.9rem;
             border-top: 1px solid #444;
         }
 
-        /* --- Mobile Responsive --- */
+        /* --- Mobile Responsive (Header & Layout) --- */
+        @media (max-width: 950px) {
+            .menu-toggle { display: flex; align-items: center; gap: 10px; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 100px; left: 0; width: 100%; background: white; padding: 20px; text-align: center; box-shadow: 0 10px 10px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+            .bouton-telephone { display: none; }
+        }
+
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 20px;
-                padding: 20px;
-            }
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-            }
-            .titre-page {
-                font-size: 2.2rem;
-            }
-            .actions-boutons {
-                flex-direction: column;
-                width: 100%;
-                max-width: 320px;
-            }
-            .bouton {
-                width: 100%;
-            }
+            nav ul { gap: 15px; }
+            .titre-page { font-size: 2.2rem; }
+            .actions-boutons { flex-direction: column; width: 100%; max-width: 320px; }
+            .actions-boutons .bouton { width: 100%; }
         }
     </style>
 </head>
@@ -261,20 +228,25 @@
 
     <!-- Header -->
     <header>
-        <a href="index.html" class="logo">
-            <img src="pizzami.png" alt="Logo PIZZA MI">
-        </a>
+        <a href="index.html" class="logo"><img src="pizzami.png" alt="Logo PIZZA MI"></a>
+        
         <nav>
-            <ul>
+            <ul class="nav-links">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="carte.html">Notre carte</a></li>
-                <li><a href="emplacement.html">Notre emplacement</a></li>
+                <li><a href="emplacement.html" style="color: var(--couleur-accent);">Notre emplacement</a></li>
                 <li><a href="privatisation.html">Privatisation</a></li>
             </ul>
         </nav>
-        <a href="tel:+33619655999" class="bouton">📞 06 19 65 59 99</a>
+        
+        <div class="header-right">
+            <a href="tel:+33619655999" class="bouton bouton-telephone">📞 06 19 65 59 99</a>
+            <div class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+                <span class="menu-text">Menu</span>
+                <span class="menu-icon">☰</span>
+            </div>
+        </div>
     </header>
-
 
     <!-- Section Principale : Infos -->
     <section class="section-emplacement">
