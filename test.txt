@@ -15,7 +15,7 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { color: var(--couleur-sombre); line-height: 1.6; background-color: var(--fond-clair); overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh;}
+        body { color: var(--couleur-sombre); line-height: 1.6; background-color: var(--fond-clair); overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
 
         /* --- Boutons --- */
@@ -29,7 +29,6 @@
             font-size: 1.1rem;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(97, 198, 41, 0.4);
-            text-align: center;
         }
         .bouton:hover { background-color: #4da31e; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(97, 198, 41, 0.6); }
 
@@ -57,6 +56,7 @@
         nav a:hover::after, nav a[style*="color: var(--couleur-accent)"]::after { width: 100%; }
         nav a:hover { color: var(--couleur-accent); }
 
+        /* Styles du bouton Menu (Caché sur PC) */
         .menu-toggle { display: none; cursor: pointer; padding: 10px; }
         .menu-text { font-size: 1.6rem; font-weight: 900; text-transform: uppercase; }
         .menu-icon { font-size: 3rem; line-height: 0.8; }
@@ -83,6 +83,7 @@
         .services-wow h2 { font-size: 3.2rem; text-align: center; color: var(--couleur-sombre); text-transform: uppercase; margin-bottom: 60px; }
         .services-wow h2 span { color: var(--couleur-accent); }
 
+        /* La grille asymétrique (Le rendu "trop beau") */
         .bento-grid {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
@@ -107,68 +108,27 @@
         .bento-content p { font-size: 1.1rem; opacity: 0.85; transition: opacity 0.4s ease; }
         .bento-card:hover .bento-content p { opacity: 1; }
 
+        /* Badge promo distributeur */
         .badge-promo { position: absolute; top: 25px; right: 25px; background: #e3000f; color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; z-index: 3; font-size: 0.9rem; animation: pulseGlowRouge 2s infinite; }
 
-        /* --- Section Avis Google "Fait Maison" --- */
-        .avis { 
-            padding: 80px 0; /* Padding gauche/droite à 0 pour laisser scroller jusqu'au bord sur mobile */
-            text-align: center; 
-            background-color: var(--couleur-sombre); 
-            color: var(--texte-blanc); 
-        }
-        .avis h2 { font-size: 2.8rem; margin-bottom: 15px; text-transform: uppercase; padding: 0 5%; }
-        .avis > p { font-size: 1.2rem; margin-bottom: 40px; font-weight: 500; opacity: 0.9; padding: 0 5%; }
-        
-        /* Le Carrousel */
-        .conteneur-avis {
-            display: flex;
-            gap: 25px;
-            overflow-x: auto;
-            padding: 20px 5%;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none; /* Cache la barre sur Firefox */
-            scroll-behavior: smooth;
-        }
-        .conteneur-avis::-webkit-scrollbar { display: none; /* Cache la barre sur Chrome/Safari/Opera */ }
-
-        /* La Carte Avis */
-        .carte-avis {
-            flex: 0 0 350px; /* Largeur fixe sur ordinateur */
-            background-color: var(--texte-blanc);
-            color: var(--couleur-sombre);
-            padding: 30px;
-            border-radius: 20px;
-            text-align: left;
-            scroll-snap-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease;
-        }
-        .carte-avis:hover { transform: translateY(-5px); }
-
-        .entete-avis { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
-        .avatar-avis {
-            width: 50px; height: 50px;
-            background-color: var(--couleur-accent);
-            color: white; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; font-weight: bold;
-        }
-        .info-auteur h4 { font-size: 1.1rem; margin-bottom: 2px; color: var(--couleur-sombre); }
-        .etoiles { color: #FFD700; font-size: 1.2rem; letter-spacing: 2px; line-height: 1; }
-        .texte-avis { font-size: 1rem; font-style: italic; line-height: 1.6; flex-grow: 1; color: #555; }
+        /* --- Avis Google --- */
+        .avis { padding: 80px 5%; text-align: center; background-color: var(--couleur-accent); color: var(--texte-blanc); }
+        .avis h2 { font-size: 2.8rem; margin-bottom: 20px; text-transform: uppercase; }
+        .avis p { font-size: 1.2rem; margin-bottom: 30px; font-weight: 500; }
+        .bouton-avis { background-color: var(--couleur-sombre); }
+        .bouton-avis:hover { background-color: #222522; }
 
         /* --- Footer --- */
-        footer { background-color: #2b2f2a; color: #ffffff; padding: 70px 5% 50px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: auto;}
-        footer h4 { margin-bottom: 25px; color: var(--couleur-accent); text-transform: uppercase; font-size: 1.2rem; letter-spacing: 1px;}
+        footer { background-color: #373C36; color: #ffffff; padding: 70px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        footer h4 { margin-bottom: 25px; color: var(--couleur-accent); text-transform: uppercase; font-size: 1.2rem; }
         footer p { margin-bottom: 10px; color: #ffffff; }
-        .footer-bas { text-align: center; background-color: #1e221d; color: #ffffff; padding: 20px; font-size: 0.9rem; border-top: 1px solid #444; }
+        .footer-bas { text-align: center; background-color: #2b2f2a; color: #ffffff; padding: 20px; font-size: 0.9rem; border-top: 1px solid #555; }
 
-        /* --- Animations --- */
+        /* --- Animations Keyframes --- */
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+        @keyframes pulseGlow { 0% { box-shadow: 0 0 15px rgba(97, 198, 41, 0.4); } 50% { box-shadow: 0 0 35px rgba(97, 198, 41, 0.8); } 100% { box-shadow: 0 0 15px rgba(97, 198, 41, 0.4); } }
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-20px); } 60% { transform: translateY(-10px); } }
         @keyframes pulseGlowRouge { 0% { box-shadow: 0 0 10px rgba(227, 0, 15, 0.4); } 50% { box-shadow: 0 0 20px rgba(227, 0, 15, 0.8); } 100% { box-shadow: 0 0 10px rgba(227, 0, 15, 0.4); } }
 
@@ -177,8 +137,9 @@
             .menu-toggle { display: flex; align-items: center; gap: 10px; }
             .nav-links { display: none; flex-direction: column; position: absolute; top: 100px; left: 0; width: 100%; background: white; padding: 20px; text-align: center; box-shadow: 0 10px 10px rgba(0,0,0,0.1); }
             .nav-links.active { display: flex; }
-            .bouton-telephone { display: none; }
+            .bouton-telephone { display: none; } /* Cache le bouton vert du header sur mobile */
 
+            /* La grille se transforme en colonne simple sur mobile */
             .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
             .card-camion, .card-event, .card-distrib { grid-column: 1 / -1; grid-row: auto; height: 380px; }
         }
@@ -189,18 +150,14 @@
             .hero img.logo-hero { max-width: 250px; }
             .services-wow h2 { font-size: 2.2rem; }
             .bento-content h3 { font-size: 1.8rem; }
-            .avis h2 { font-size: 2.2rem; }
-            
-            /* Ajustement des cartes avis pour téléphone (prennent 85% de l'écran) */
-            .carte-avis { flex: 0 0 85vw; padding: 25px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- En-tête -->
     <header>
         <a href="index.html" class="logo"><img src="pizzami.png" alt="Logo PIZZA MI"></a>
+        
         <nav>
             <ul class="nav-links">
                 <li><a href="#" style="color: var(--couleur-accent);">Accueil</a></li>
@@ -209,6 +166,7 @@
                 <li><a href="privatisation.html">Privatisation</a></li>
             </ul>
         </nav>
+        
         <div class="header-right">
             <a href="tel:+33619655999" class="bouton bouton-telephone">📞 06 19 65 59 99</a>
             <div class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">
@@ -218,15 +176,14 @@
         </div>
     </header>
 
-    <!-- Section Héro -->
     <section class="hero">
         <img src="pizzami.png" alt="PIZZA MI" class="logo-hero">
         <p>Créé en 2006 par un pizzaïolo passionné. Un concept familial : une qualité irréprochable, une quantité généreuse et le prix le plus juste.</p>
         <a href="carte.html" class="bouton bouton-hero">Découvrir notre carte</a>
+        
         <div class="scroll-down">↓</div>
     </section>
 
-    <!-- Section WOW (Bento Grid) -->
     <section class="services-wow">
         <h2>L'expérience <span>PIZZA MI</span></h2>
         
@@ -258,125 +215,33 @@
         </div>
     </section>
 
-    <!-- Section Avis "Fait Maison" -->
     <section class="avis">
-        <h2>Vos avis <span>Google</span></h2>
-        <p>Votre satisfaction est notre priorité. Glissez pour lire les retours de nos clients !</p>
-        
-        <div class="conteneur-avis">
-            <!-- Avis 1 -->
-            <div class="carte-avis">
-                <div class="entete-avis">
-                    <div class="avatar-avis">M</div>
-                    <div class="info-auteur">
-                        <h4>Malik B</h4>
-                        <div class="etoiles">★★★★★</div>
-                    </div>
-                </div>
-                <p class="texte-avis">"Très bonne expérience, personne acceuillante et service rapide, de plus les pizza sont bonne"</p>
-            </div>
-            
-            <!-- Avis 2 -->
-            <div class="carte-avis">
-                <div class="entete-avis">
-                    <div class="avatar-avis">Y</div>
-                    <div class="info-auteur">
-                        <h4>Yohann Faure</h4>
-                        <div class="etoiles">★★★★★</div>
-                    </div>
-                </div>
-                <p class="texte-avis">"Un très bon camion à pizza, pâte fine, garniture généreuse. Special dédicace à la margarita à 6€80, prix imbattable."</p>
-            </div>
-
-            <!-- Avis 3 -->
-            <div class="carte-avis">
-                <div class="entete-avis">
-                    <div class="avatar-avis">T</div>
-                    <div class="info-auteur">
-                        <h4>Thomas Pilarski</h4>
-                        <div class="etoiles">★★★★★</div>
-                    </div>
-                </div>
-                <p class="texte-avis">"Tout simplement parfait.!!! 🍕<br><br>De passage dans le coin, je me suis arrêté à ce camion à pizza, vous pouvez y aller les yeux fermé.! Une pâte fraîche est légère, dessus des produits frais et bien garnis. Vous serez reçu avec le sourire, dans la bonne humeur par un patron passionné..."</p>
-            </div>
-
-            <!-- Avis 4 -->
-            <div class="carte-avis">
-                <div class="entete-avis">
-                    <div class="avatar-avis">B</div>
-                    <div class="info-auteur">
-                        <h4>Billy Ostéo</h4>
-                        <div class="etoiles">★★★★★</div>
-                    </div>
-                </div>
-                <p class="texte-avis">"En plus d'être meilleur et plus abordable qu'ailleurs vous aurez pour le même prix un sourire et un mot gentil !"</p>
-            </div>
-
-            <!-- Avis 5 -->
-            <div class="carte-avis">
-                <div class="entete-avis">
-                    <div class="avatar-avis">V</div>
-                    <div class="info-auteur">
-                        <h4>Valérie Jarron</h4>
-                        <div class="etoiles">★★★★★</div>
-                    </div>
-                </div>
-                <p class="texte-avis">"Pizza super bonne, la pâte est fine comme j’aime et bien garnis, accueille au top ! On reviendra avec plaisir"</p>
-            </div>
-
-            <!-- Avis 6 -->
-            <div class="carte-avis">
-                <div class="entete-avis">
-                    <div class="avatar-avis">E</div>
-                    <div class="info-auteur">
-                        <h4>Emma</h4>
-                        <div class="etoiles">★★★★★</div>
-                    </div>
-                </div>
-                <p class="texte-avis">"Délicieuses pizzas, la pâte est très fine et croustillante. Beaucoup de choix, je recommande les yeux fermés!"</p>
-            </div>
-
-            <!-- Avis 7 -->
-            <div class="carte-avis">
-                <div class="entete-avis">
-                    <div class="avatar-avis">K</div>
-                    <div class="info-auteur">
-                        <h4>Karine Da Costa</h4>
-                        <div class="etoiles">★★★★★</div>
-                    </div>
-                </div>
-                <p class="texte-avis">"J'y vais depuis des années et les pizzas sont toujours aussi délicieuses, un accueil super, je vous le conseille vivement."</p>
-            </div>
-        </div>
-
-        <div style="margin-top: 50px;">
-            <!-- Remplacez le lien # ci-dessous par le vrai lien vers votre fiche Google -->
-            <a href="#" target="_blank" class="bouton">Laisser un avis sur Google</a>
-        </div>
+        <h2>Votre avis est précieux</h2>
+        <p>Votre satisfaction est notre priorité depuis plus de 20 ans. Partagez votre expérience !</p>
+        <a href="#" class="bouton bouton-avis">Laisser un avis Google</a>
     </section>
 
-    <!-- Footer -->
-    <footer>
+    <footer style="background-color: #373C36; color: #ffffff; padding: 70px 5% 50px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: auto;">
         <div>
-            <h4>PIZZA MI</h4>
-            <p>Camion de pizzas artisanales à Bourg-Saint-Andéol depuis 2006.</p>
+            <h4 style="color: #61C629; margin-bottom: 25px; text-transform: uppercase; font-size: 1.2rem; letter-spacing: 1px;">PIZZA MI</h4>
+            <p style="color: #ffffff; margin-bottom: 10px;">Camion de pizzas artisanales à Bourg-Saint-Andéol depuis 2006.</p>
         </div>
         <div>
-            <h4>Contact</h4>
-            <p>📞 06 19 65 59 99</p>
-            <p>📍 Parking de Neptune</p>
-            <p>07700 Bourg-Saint-Andéol</p>
+            <h4 style="color: #61C629; margin-bottom: 25px; text-transform: uppercase; font-size: 1.2rem; letter-spacing: 1px;">Contact</h4>
+            <p style="color: #ffffff; margin-bottom: 10px;">📞 06 19 65 59 99</p>
+            <p style="color: #ffffff; margin-bottom: 10px;">📍 Parking de Neptune</p>
+            <p style="color: #ffffff; margin-bottom: 10px;">07700 Bourg-Saint-Andéol</p>
         </div>
         <div>
-            <h4>Société</h4>
-            <p>SASU PIZZA MI</p>
-            <p>Zone Artisanale des Auches</p>
-            <p>46 Chemin Farigoule</p>
-            <p>07700 Bourg-Saint-Andéol</p>
+            <h4 style="color: #61C629; margin-bottom: 25px; text-transform: uppercase; font-size: 1.2rem; letter-spacing: 1px;">Société</h4>
+            <p style="color: #ffffff; margin-bottom: 10px;">SASU PIZZA MI</p>
+            <p style="color: #ffffff; margin-bottom: 10px;">Zone Artisanale des Auches</p>
+            <p style="color: #ffffff; margin-bottom: 10px;">46 Chemin Farigoule</p>
+            <p style="color: #ffffff; margin-bottom: 10px;">07700 Bourg-Saint-Andéol</p>
         </div>
     </footer>
-    <div class="footer-bas">
-        <p>© 2026 <a href="https://www.digiclem.fr" target="_blank" style="color: #61C629; font-weight: bold;">digiclem</a> - Tous droits réservés | <a href="mentions-legales.html" style="color: #ffffff;">Mentions légales</a></p>
+    <div class="footer-bas" style="text-align: center; background-color: #2b2f2a; color: #ffffff; padding: 20px; font-size: 0.9rem; border-top: 1px solid #444;">
+        <p style="color: #ffffff;">© 2026 <a href="https://www.digiclem.fr" target="_blank" style="color: #61C629; font-weight: bold;">digiclem</a> - Tous droits réservés | <a href="mentions-legales.html" style="color: #ffffff;">Mentions légales</a></p>
     </div>
 
 </body>
